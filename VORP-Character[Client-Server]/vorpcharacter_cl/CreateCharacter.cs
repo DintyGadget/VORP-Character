@@ -59,7 +59,7 @@ namespace vorpcharacter_cl
                     skinPlayer[$"{name}_visibility"] = visibility;
                     skinPlayer[$"{name}_tx_id"] = tx_id;
 
-                    if (name.Contains("shadows") || name.Contains("lipsticks"))
+                    if (name.Contains("shadows") || name.Contains("lipsticks") || name.Equals("hair") || name.Equals("beardstabble") || name.Equals("eyebrows"))
                     {
                         skinPlayer[$"{name}_palette_id"] = palette_id;
                         skinPlayer[$"{name}_palette_color_primary"] = palette_color_primary;
@@ -80,7 +80,7 @@ namespace vorpcharacter_cl
                             SkinsUtils.overlay_all_layers[i]["palette_color_secondary"] = palette_color_secondary;
                             SkinsUtils.overlay_all_layers[i]["palette_color_tertiary"] = palette_color_tertiary;
                         }
-                        if (name.Equals("shadows") || name.Equals("eyeliners") || name.Equals("lipsticks"))
+                        if (name.Equals("shadows") || name.Equals("eyeliners") || name.Equals("lipsticks") || name.Equals("hair") || name.Equals("beardstabble"))
                         {
                             SkinsUtils.overlay_all_layers[i]["var"] = var;
                             SkinsUtils.overlay_all_layers[i]["tx_id"] = (int)SkinsUtils.overlays_info[name][0]["id"];
@@ -210,6 +210,7 @@ namespace vorpcharacter_cl
             //New DB
             { "eyebrows_visibility", 0 },
             { "eyebrows_tx_id", 0 },
+            { "eyebrows_palette_id", 0 },
 
             { "scars_visibility", 0 },
             { "scars_tx_id", 0 },
@@ -247,6 +248,14 @@ namespace vorpcharacter_cl
             { "shadows_tx_id", 0 },
             { "shadows_palette_id", 0 },
             { "shadows_palette_color_primary", 0 },
+
+            { "hair_visibility", 0 },
+            { "hair_tx_id", 0 },
+            { "hair_palette_id", 0 },
+
+            { "beardstabble_visibility", 0 },
+            { "beardstabble_tx_id", 0 },
+            { "beardstabble_palette_id", 0 }
         };
 
         public static Dictionary<string, object> clothesPlayer = new Dictionary<string, object>() {
@@ -728,16 +737,16 @@ namespace vorpcharacter_cl
             TriggerEvent("vorp:initNewCharacter");
             Vector3 coords = new Vector3(GetConfig.Config["StartingCoords"][0].ToObject<float>(), GetConfig.Config["StartingCoords"][1].ToObject<float>(), GetConfig.Config["StartingCoords"][2].ToObject<float>());
 
-            API.DoScreenFadeOut(500);
+            API.DoScreenFadeOut(100);
             API.SetEntityCoords(API.PlayerPedId(), coords.X, coords.Y, coords.Z, true, true, true, false);
             API.SetEntityHeading(API.PlayerPedId(), GetConfig.Config["Heading"][0].ToObject<float>());
-            await Delay(3000);
+            await Delay(1000);
 
             TriggerEvent("vorp:setInstancePlayer", false);
 
-            API.DoScreenFadeIn(500);
+            await Delay(8000);
 
-            await Delay(3000);
+            API.DoScreenFadeIn(500);
 
             TriggerEvent("vorp:TipBottom", GetConfig.Langs["TipFinal"], 15000);
         }
@@ -746,6 +755,7 @@ namespace vorpcharacter_cl
         {
             if (API.IsPedMale(ped))
             {
+
                 string comp_body_male = "0x" + GetConfig.Config["Male"][0]["Body"][0].ToString();
                 int comp_body_male_int = Convert.ToInt32(comp_body_male, 16);
                 string comp_heads_male = "0x" + GetConfig.Config["Male"][0]["Heads"][0].ToString();
@@ -758,12 +768,28 @@ namespace vorpcharacter_cl
                 Function.Call((Hash)0xD3A7B003ED343FD9, ped, comp_body_male_int, true, true, true);
                 Function.Call((Hash)0xD3A7B003ED343FD9, ped, comp_legs_male_int, true, true, true);
 
+                Function.Call((Hash)0xD710A5007C2AC539, ped, 0x1D4C528A, 0);
                 Function.Call((Hash)0xD710A5007C2AC539, ped, 0x3F1F01E5, 0);
+                Function.Call((Hash)0xD710A5007C2AC539, ped, 0xDA0E2C55, 0);
+                Function.Call((Hash)0x704C908E9C405136, ped);
 
                 Function.Call((Hash)0xCC8CA3E88256E58F, ped, 0, 1, 1, 1, false);
+
+                // Dress Ped
+                Function.Call((Hash)0xD3A7B003ED343FD9, ped, 0x75BC0CF5, true, true, false);
+                Function.Call((Hash)0xD3A7B003ED343FD9, ped, 0x6AB27695, true, true, false);
             }
             else
             {
+                //Function.Call((Hash)0x77FF8D35EEC6BBC4, API.PlayerPedId(), 0, 0);
+
+                while (!Function.Call<bool>((Hash)0xA0BC8FAED8CFEB3C, API.PlayerPedId()))
+                {
+                    await Delay(0);
+                }
+
+                Function.Call((Hash)0x0BFA1BD465CDFEFD, API.PlayerPedId());
+
                 string comp_body_female = "0x" + GetConfig.Config["Female"][0]["Body"][0].ToString();
                 int comp_body_female_int = Convert.ToInt32(comp_body_female, 16);
                 string comp_heads_female = "0x" + GetConfig.Config["Female"][0]["Heads"][0].ToString();
@@ -776,9 +802,17 @@ namespace vorpcharacter_cl
                 Function.Call((Hash)0xD3A7B003ED343FD9, ped, comp_body_female_int, true, true, true);
                 Function.Call((Hash)0xD3A7B003ED343FD9, ped, comp_legs_female_int, true, true, true);
 
+
+                Function.Call((Hash)0xD710A5007C2AC539, ped, 0x1D4C528A, 0);
                 Function.Call((Hash)0xD710A5007C2AC539, ped, 0x3F1F01E5, 0);
+                Function.Call((Hash)0xD710A5007C2AC539, ped, 0xDA0E2C55, 0);
+                Function.Call((Hash)0x704C908E9C405136, ped);
 
                 Function.Call((Hash)0xCC8CA3E88256E58F, ped, 0, 1, 1, 1, false);
+
+                // Dress Ped
+                Function.Call((Hash)0xD3A7B003ED343FD9, ped, 0x216612F0, true, true, false);
+                Function.Call((Hash)0xD3A7B003ED343FD9, ped, 0x5BA76CCF, true, true, false);
             }
         }
 
@@ -799,13 +833,6 @@ namespace vorpcharacter_cl
             Camera_Legs = API.CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", -559.2103f, -3781.039f, 238.4678f, -42.50001f, 0.0f, -89.2997f, 40.00f, false, 0);
             Camera_Body = API.CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", -560.6195f, -3780.708f, 239.1954f, -15.75687f, 0.0f, -89.49976f, 40.00f, false, 0);
             //Camera_Back = API.CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", -563.0956f, -3780.669f, 238.465f, 0.906957f, 0.0f, -89.36639f, 40.00f, false, 0);
-
-            uint HashVeh = (uint)API.GetHashKey("hotAirBalloon01");
-            await Miscellanea.LoadModel(HashVeh);
-
-            uint HashPed = (uint)API.GetHashKey("CS_balloonoperator");
-            await Miscellanea.LoadModel(HashPed);
-
         }
 
         private static async Task DeleteAll()
@@ -838,12 +865,12 @@ namespace vorpcharacter_cl
             uint hash_f = (uint)API.GetHashKey(model_f);
             uint hash_m = (uint)API.GetHashKey(model_m);
             /*
-             * Esperamos a que cargen los modelos en cache
+             * We wait for the models to load in the cache
              */
             await Miscellanea.LoadModel(hash_f);
             await Miscellanea.LoadModel(hash_m);
             /*
-             * Creamos los modelos en el sitio de creacion
+             * We create the models on the creation site
              */
             PedFemale = API.CreatePed((uint)hash_f, -558.43f, -3776.65f, 237.7f, 93.2f, false, true, true, true);
             PedMale = API.CreatePed((uint)hash_m, -558.52f, -3775.6f, 237.7f, 93.2f, false, true, true, true);
@@ -853,7 +880,16 @@ namespace vorpcharacter_cl
             Function.Call((Hash)0x283978A15512B2FE, PedFemale, true);
             Function.Call((Hash)0x283978A15512B2FE, PedMale, true);
             /*
-             * Congelamos las Peds
+             * Adding clothes to ped
+             */
+            //Male
+            Function.Call((Hash)0xD3A7B003ED343FD9, PedMale, 0x216612F0, true, true, false);
+            Function.Call((Hash)0xD3A7B003ED343FD9, PedMale, 0x5BA76CCF, true, true, false);
+            //Female
+            Function.Call((Hash)0xD3A7B003ED343FD9, PedFemale, 0x75BC0CF5, true, true, false);
+            Function.Call((Hash)0xD3A7B003ED343FD9, PedFemale, 0x6AB27695, true, true, false);
+            /*
+             * We freeze the Peds
              */
             API.FreezeEntityPosition(PedFemale, true);
             API.FreezeEntityPosition(PedMale, true);

@@ -20,6 +20,7 @@ namespace vorpcharacter_cl.Menus
         private static MenuListItem btnSelectorTorso;
         private static MenuListItem btnSelectorLegs;
         private static MenuListItem btnSelectoreyeBrows;
+        private static MenuListItem btnSelectoreyeBrowsColor;
         private static MenuListItem btnSelectorScars;
         private static MenuListItem btnSelectorSpots;
         private static MenuListItem btnSelectorDisc;
@@ -35,6 +36,10 @@ namespace vorpcharacter_cl.Menus
         private static MenuListItem btnSelectorShadows;
         private static MenuListItem btnSelectorShadowsColor;
         private static MenuListItem btnSelectorShadowsPColor;
+        private static MenuListItem btnSelectorHairOver;
+        private static MenuListItem btnSelectorHairOverColor;
+        private static MenuListItem btnSelectorBeardStabble;
+        private static MenuListItem btnSelectorBeardStabbleColor;
 
         private static bool setupDone = false;
         private static void SetupMenu()
@@ -155,6 +160,17 @@ namespace vorpcharacter_cl.Menus
                 btnSelectoreyeBrows = new MenuListItem(GetConfig.Langs["EyeBrowsList"], eyeBrowsValues, 0, GetConfig.Langs["EyeBrowsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectoreyeBrows); // Lo añadimos al menu
 
+                //eyeBrows c
+                List<string> eyeBrowsColorValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.COLOR_PALETTES.Count() + 1; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    eyeBrowsColorValues.Add(GetConfig.Langs["eyeBrowsColors"] + i);
+                }
+
+                btnSelectoreyeBrowsColor = new MenuListItem(GetConfig.Langs["eyeBrowsColorsList"], eyeBrowsColorValues, 0, GetConfig.Langs["eyeBrowsColorsDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectoreyeBrowsColor); // Lo añadimos al menu
+
                 //Scars
                 List<string> scarsValues = new List<string>();
 
@@ -287,7 +303,7 @@ namespace vorpcharacter_cl.Menus
                 btnSelectorLipsticksPColor = new MenuListItem(GetConfig.Langs["LipsticksPColorsList"], lipsticksPColorValues, 0, GetConfig.Langs["LipsticksPColorsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorLipsticksPColor); // Lo añadimos al menu
 
-                //Lipsticks
+                //Shadow
                 List<string> shadowsValues = new List<string>();
 
                 for (float i = 1; i < SkinsUtils.overlays_info["shadows"].Count() + 2; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
@@ -298,7 +314,7 @@ namespace vorpcharacter_cl.Menus
                 btnSelectorShadows = new MenuListItem(GetConfig.Langs["ShadowsList"], shadowsValues, 0, GetConfig.Langs["ShadowsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorShadows); // Lo añadimos al menu
 
-                //Lipsticks
+                //Shadow color
                 List<string> shadowsColorValues = new List<string>();
 
                 for (float i = 1; i < SkinsUtils.COLOR_PALETTES.Count() + 1; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
@@ -309,7 +325,7 @@ namespace vorpcharacter_cl.Menus
                 btnSelectorShadowsColor = new MenuListItem(GetConfig.Langs["ShadowsColorsList"], shadowsColorValues, 0, GetConfig.Langs["ShadowsColorsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorShadowsColor); // Lo añadimos al menu
 
-                //Lipsticks
+                //Shadow color 2
                 List<string> shadowsPColorValues = new List<string>();
 
                 for (float i = 1; i < 255; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
@@ -319,6 +335,50 @@ namespace vorpcharacter_cl.Menus
 
                 btnSelectorShadowsPColor = new MenuListItem(GetConfig.Langs["ShadowsPColorsList"], shadowsPColorValues, 0, GetConfig.Langs["ShadowsPColorsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorShadowsPColor); // Lo añadimos al menu
+
+                //Hair over
+                List<string> hairoverValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.overlays_info["hair"].Count() + 2; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    hairoverValues.Add(GetConfig.Langs["HairOver"] + i);
+                }
+
+                btnSelectorHairOver = new MenuListItem(GetConfig.Langs["HairOverList"], hairoverValues, 0, GetConfig.Langs["HairOverDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorHairOver); // Lo añadimos al menu
+
+                //Hair over color
+                List<string> hairoverColorValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.COLOR_PALETTES.Count() + 1; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    hairoverColorValues.Add(GetConfig.Langs["HairOverColors"] + i);
+                }
+
+                btnSelectorHairOverColor = new MenuListItem(GetConfig.Langs["HairOverColorsList"], hairoverColorValues, 0, GetConfig.Langs["HairOverColorsDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorHairOverColor); // Lo añadimos al menu
+
+                //beardstabble
+                List<string> beardstabbleValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.overlays_info["beardstabble"].Count() + 2; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    beardstabbleValues.Add(GetConfig.Langs["BeardStabble"] + i);
+                }
+
+                btnSelectorBeardStabble = new MenuListItem(GetConfig.Langs["BeardStabbleList"], beardstabbleValues, 0, GetConfig.Langs["BeardStabbleDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorBeardStabble); // Lo añadimos al menu
+
+                //beardstabble color
+                List<string> beardstabbleColorValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.COLOR_PALETTES.Count() + 1; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    beardstabbleColorValues.Add(GetConfig.Langs["BeardStabbleColors"] + i);
+                }
+
+                btnSelectorBeardStabbleColor = new MenuListItem(GetConfig.Langs["BeardStabbleColorsList"], beardstabbleColorValues, 0, GetConfig.Langs["BeardStabbleColorsDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorBeardStabbleColor); // Lo añadimos al menu
             }
             else //Female
             {
@@ -425,6 +485,17 @@ namespace vorpcharacter_cl.Menus
                 btnSelectoreyeBrows = new MenuListItem(GetConfig.Langs["EyeBrowsList"], eyeBrowsValues, 0, GetConfig.Langs["EyeBrowsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectoreyeBrows); // Lo añadimos al menu
 
+                //eyeBrows c
+                List<string> eyeBrowsColorValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.COLOR_PALETTES.Count() + 1; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    eyeBrowsColorValues.Add(GetConfig.Langs["eyeBrowsColors"] + i);
+                }
+
+                btnSelectoreyeBrowsColor = new MenuListItem(GetConfig.Langs["eyeBrowsColorsList"], eyeBrowsColorValues, 0, GetConfig.Langs["eyeBrowsColorsDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectoreyeBrowsColor); // Lo añadimos al menu
+
                 //Scars
                 List<string> scarsValues = new List<string>();
 
@@ -535,7 +606,7 @@ namespace vorpcharacter_cl.Menus
                 btnSelectorLipsticks = new MenuListItem(GetConfig.Langs["LipsticksList"], lipsticksValues, 0, GetConfig.Langs["LipsticksDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorLipsticks); // Lo añadimos al menu
 
-                //Lipsticks
+                //Lipsticks c
                 List<string> lipsticksColorValues = new List<string>();
 
                 for (float i = 1; i < SkinsUtils.COLOR_PALETTES.Count() + 1; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
@@ -546,7 +617,7 @@ namespace vorpcharacter_cl.Menus
                 btnSelectorLipsticksColor = new MenuListItem(GetConfig.Langs["LipsticksColorsList"], lipsticksColorValues, 0, GetConfig.Langs["LipsticksColorsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorLipsticksColor); // Lo añadimos al menu
 
-                //Lipsticks
+                //Lipsticks c2
                 List<string> lipsticksPColorValues = new List<string>();
 
                 for (float i = 1; i < 255; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
@@ -557,7 +628,7 @@ namespace vorpcharacter_cl.Menus
                 btnSelectorLipsticksPColor = new MenuListItem(GetConfig.Langs["LipsticksPColorsList"], lipsticksPColorValues, 0, GetConfig.Langs["LipsticksPColorsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorLipsticksPColor); // Lo añadimos al menu
 
-                //Lipsticks
+                //Shadow
                 List<string> shadowsValues = new List<string>();
 
                 for (float i = 1; i < SkinsUtils.overlays_info["shadows"].Count() + 2; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
@@ -568,7 +639,7 @@ namespace vorpcharacter_cl.Menus
                 btnSelectorShadows = new MenuListItem(GetConfig.Langs["ShadowsList"], shadowsValues, 0, GetConfig.Langs["ShadowsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorShadows); // Lo añadimos al menu
 
-                //Lipsticks
+                //Shadow color
                 List<string> shadowsColorValues = new List<string>();
 
                 for (float i = 1; i < SkinsUtils.COLOR_PALETTES.Count() + 1; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
@@ -579,7 +650,7 @@ namespace vorpcharacter_cl.Menus
                 btnSelectorShadowsColor = new MenuListItem(GetConfig.Langs["ShadowsColorsList"], shadowsColorValues, 0, GetConfig.Langs["ShadowsColorsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorShadowsColor); // Lo añadimos al menu
 
-                //Lipsticks
+                //Shadow color 2
                 List<string> shadowsPColorValues = new List<string>();
 
                 for (float i = 1; i < 255; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
@@ -589,6 +660,44 @@ namespace vorpcharacter_cl.Menus
 
                 btnSelectorShadowsPColor = new MenuListItem(GetConfig.Langs["ShadowsPColorsList"], shadowsPColorValues, 0, GetConfig.Langs["ShadowsPColorsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorShadowsPColor); //Lo añadimos al menu 
+
+                //Hair over
+                List<string> hairoverValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.overlays_info["hair"].Count() + 2; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    hairoverValues.Add(GetConfig.Langs["HairOver"] + i);
+                }
+
+                btnSelectorHairOver = new MenuListItem(GetConfig.Langs["HairOverList"], hairoverValues, 0, GetConfig.Langs["HairOverDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorHairOver); // Lo añadimos al menu
+
+                //Hair over color
+                List<string> hairoverColorValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.COLOR_PALETTES.Count() + 1; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    hairoverColorValues.Add(GetConfig.Langs["HairOverColors"] + i);
+                }
+
+                btnSelectorHairOverColor = new MenuListItem(GetConfig.Langs["HairOverColorsList"], hairoverColorValues, 0, GetConfig.Langs["HairOverColorsDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorHairOverColor); // Lo añadimos al menu
+
+                //beardstabble
+                List<string> beardstabbleValues = new List<string>();
+
+                beardstabbleValues.Add(GetConfig.Langs["NoExistValue"]);
+
+                btnSelectorBeardStabble = new MenuListItem(GetConfig.Langs["BeardStabbleList"], beardstabbleValues, 0, GetConfig.Langs["BeardStabbleDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorBeardStabble); // Lo añadimos al menu
+
+                //beardstabble color
+                List<string> beardstabbleColorValues = new List<string>();
+
+                beardstabbleColorValues.Add(GetConfig.Langs["NoExistValue"]);
+
+                btnSelectorBeardStabbleColor = new MenuListItem(GetConfig.Langs["BeardStabbleColorsList"], beardstabbleColorValues, 0, GetConfig.Langs["BeardStabbleColorsDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorBeardStabbleColor); // Lo añadimos al menu
             }
 
 
@@ -638,10 +747,10 @@ namespace vorpcharacter_cl.Menus
                         }
                         break;
                     case 3:
-                        CreateCharacter.SetPlayerBodyComponent((uint)SkinsUtils.BODY_TYPES.ElementAt(_newIndex), "Body");
+                            CreateCharacter.SetPlayerBodyComponent((uint)SkinsUtils.BODY_TYPES.ElementAt(_newIndex), "Body");
                         break;
                     case 4:
-                        CreateCharacter.SetPlayerBodyComponent((uint)SkinsUtils.WAIST_TYPES.ElementAt(_newIndex), "Waist");
+                            CreateCharacter.SetPlayerBodyComponent((uint)SkinsUtils.WAIST_TYPES.ElementAt(_newIndex), "Waist");
                         break;
                     case 5:
                         if (CreateCharacter.model_selected == "mp_male") // Male 
@@ -690,14 +799,24 @@ namespace vorpcharacter_cl.Menus
                     case 9:
                         if (_newIndex == 0)
                         {
-                            CreateCharacter.toggleOverlayChange("eyebrows", 0, _newIndex, 0, 0, 0, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
+                            CreateCharacter.toggleOverlayChange("eyebrows", 0, _newIndex, 0, 0, 0, 1.0f, 0, btnSelectoreyeBrowsColor.ListIndex, 0, 0, 0, 0, 1.0f);
                         }
                         else
                         {
-                            CreateCharacter.toggleOverlayChange("eyebrows", 1, _newIndex - 1, 0, 0, 0, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
+                            CreateCharacter.toggleOverlayChange("eyebrows", 1, _newIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectoreyeBrowsColor.ListIndex, 0, 0, 0, 0, 1.0f);
                         }
                         break;
                     case 10:
+                        if (btnSelectoreyeBrows.ListIndex == 0)
+                        {
+                            CreateCharacter.toggleOverlayChange("eyebrows", 0, btnSelectoreyeBrows.ListIndex, 0, 0, 0, 1.0f, 0, btnSelectoreyeBrowsColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
+                        }
+                        else
+                        {
+                            CreateCharacter.toggleOverlayChange("eyebrows", 1, btnSelectoreyeBrows.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectoreyeBrowsColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
+                        }
+                        break;
+                    case 11:
                         if (_newIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("scars", 0, _newIndex, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
@@ -707,7 +826,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("scars", 1, _newIndex - 1, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 11:
+                    case 12:
                         if (_newIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("spots", 0, _newIndex, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
@@ -717,7 +836,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("spots", 1, _newIndex - 1, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 12:
+                    case 13:
                         if (_newIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("disc", 0, _newIndex, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
@@ -727,7 +846,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("disc", 1, _newIndex - 1, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 13:
+                    case 14:
                         if (_newIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("complex", 0, _newIndex, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
@@ -737,7 +856,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("complex", 1, _newIndex - 1, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 14:
+                    case 15:
                         if (_newIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("acne", 0, _newIndex, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
@@ -747,7 +866,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("acne", 1, _newIndex - 1, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 15:
+                    case 16:
                         if (_newIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("ageing", 0, _newIndex, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
@@ -757,7 +876,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("ageing", 1, _newIndex - 1, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 16:
+                    case 17:
                         if (_newIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("moles", 0, _newIndex, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
@@ -767,7 +886,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("moles", 1, _newIndex - 1, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 17:
+                    case 18:
                         if (_newIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("freckles", 0, _newIndex, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
@@ -777,7 +896,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("freckles", 1, _newIndex - 1, 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 18:
+                    case 19:
                         if (_newIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("grime", 0, _newIndex, 0, 0, 0, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
@@ -787,7 +906,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("grime", 1, _newIndex - 1, 0, 0, 0, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 19:
+                    case 20:
                         if (_newIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("lipsticks", 0, _newIndex, 0, 0, 0, 1.0f, 0, btnSelectorLipsticksColor.ListIndex, btnSelectorLipsticksPColor.ListIndex, 0, 0, 0, 1.0f);
@@ -797,7 +916,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("lipsticks", 1, _newIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorLipsticksColor.ListIndex, btnSelectorLipsticksPColor.ListIndex, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 20:
+                    case 21:
                         if (btnSelectorLipsticks.ListIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("lipsticks", 0, btnSelectorLipsticks.ListIndex, 0, 0, 0, 1.0f, 0, _newIndex, btnSelectorLipsticksPColor.ListIndex, 0, 0, 0, 1.0f);
@@ -807,7 +926,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("lipsticks", 1, btnSelectorLipsticks.ListIndex - 1, 0, 0, 0, 1.0f, 0, _newIndex, btnSelectorLipsticksPColor.ListIndex, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 21:
+                    case 22:
                         if (btnSelectorLipsticks.ListIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("lipsticks", 0, btnSelectorLipsticks.ListIndex, 0, 0, 0, 1.0f, 0, btnSelectorLipsticksColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
@@ -817,7 +936,7 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("lipsticks", 1, btnSelectorLipsticks.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorLipsticksColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 22:
+                    case 23:
                         if (_newIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("shadows", 0, _newIndex, 0, 0, 0, 1.0f, 0, btnSelectorShadowsColor.ListIndex, btnSelectorShadowsPColor.ListIndex, 0, 0, 0, 1.0f);
@@ -827,7 +946,17 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("shadows", 1, _newIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorShadowsColor.ListIndex, btnSelectorShadowsPColor.ListIndex, 0, 0, 0, 1.0f);
                         }
                         break;
-                    case 23:
+                    case 24:
+                        if (btnSelectorShadows.ListIndex == 0)
+                        {
+                            CreateCharacter.toggleOverlayChange("shadows", 0, btnSelectorShadows.ListIndex, 0, 0, 0, 1.0f, 0, _newIndex, btnSelectorShadowsPColor.ListIndex, 0, 0, 0, 1.0f);
+                        }
+                        else
+                        {
+                            CreateCharacter.toggleOverlayChange("shadows", 1, btnSelectorShadows.ListIndex - 1, 0, 0, 0, 1.0f, 0, _newIndex, btnSelectorShadowsPColor.ListIndex, 0, 0, 0, 1.0f);
+                        }
+                        break;
+                    case 25:
                         if (btnSelectorShadows.ListIndex == 0)
                         {
                             CreateCharacter.toggleOverlayChange("shadows", 0, btnSelectorShadows.ListIndex, 0, 0, 0, 1.0f, 0, btnSelectorShadowsColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
@@ -835,6 +964,46 @@ namespace vorpcharacter_cl.Menus
                         else
                         {
                             CreateCharacter.toggleOverlayChange("shadows", 1, btnSelectorShadows.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorShadowsColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
+                        }
+                        break;
+                    case 26:
+                        if (_newIndex == 0)
+                        {
+                            CreateCharacter.toggleOverlayChange("hair", 0, _newIndex, 0, 0, 0, 1.0f, 0, btnSelectorHairOverColor.ListIndex, 0, 0, 0, 0, 1.0f);
+                        }
+                        else
+                        {
+                            CreateCharacter.toggleOverlayChange("hair", 1, _newIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorHairOverColor.ListIndex, 0, 0, 0, 0, 1.0f);
+                        }
+                        break;
+                    case 27:
+                        if (btnSelectorHairOver.ListIndex == 0)
+                        {
+                            CreateCharacter.toggleOverlayChange("hair", 0, btnSelectorHairOver.ListIndex, 0, 0, 0, 1.0f, 0, btnSelectorHairOverColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
+                        }
+                        else
+                        {
+                            CreateCharacter.toggleOverlayChange("hair", 1, btnSelectorHairOver.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorHairOverColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
+                        }
+                        break;
+                    case 28:
+                        if (_newIndex == 0)
+                        {
+                            CreateCharacter.toggleOverlayChange("beardstabble", 0, _newIndex, 0, 0, 0, 1.0f, 0, btnSelectorBeardStabbleColor.ListIndex, 0, 0, 0, 0, 0.0f);
+                        }
+                        else
+                        {
+                            CreateCharacter.toggleOverlayChange("beardstabble", 1, _newIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorBeardStabbleColor.ListIndex, 0, 0, 0, 0, 1.0f);
+                        }
+                        break;
+                    case 29:
+                        if (btnSelectorBeardStabble.ListIndex == 0)
+                        {
+                            CreateCharacter.toggleOverlayChange("beardstabble", 0, btnSelectorBeardStabble.ListIndex, 0, 0, 0, 1.0f, 0, btnSelectorBeardStabbleColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
+                        }
+                        else
+                        {
+                            CreateCharacter.toggleOverlayChange("beardstabble", 1, btnSelectorBeardStabble.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorBeardStabbleColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
                         }
                         break;
                 }
@@ -851,11 +1020,11 @@ namespace vorpcharacter_cl.Menus
 
             if (btnSelectoreyeBrows.ListIndex == 0)
             {
-                CreateCharacter.toggleOverlayChange("eyebrows", 0, btnSelectoreyeBrows.ListIndex, 0, 0, 0, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
+                CreateCharacter.toggleOverlayChange("eyebrows", 0, btnSelectoreyeBrows.ListIndex, 0, 0, 0, 1.0f, 0, btnSelectoreyeBrowsColor.ListIndex, 0, 0, 0, 0, 1.0f);
             }
             else
             {
-                CreateCharacter.toggleOverlayChange("eyebrows", 1, btnSelectoreyeBrows.ListIndex - 1, 0, 0, 0, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
+                CreateCharacter.toggleOverlayChange("eyebrows", 1, btnSelectoreyeBrows.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectoreyeBrowsColor.ListIndex, 0, 0, 0, 0, 1.0f);
             }
             if (btnSelectorScars.ListIndex == 0)
             {

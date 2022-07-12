@@ -21,6 +21,7 @@ namespace vorpcharacter_cl.Utils
             API.RegisterCommand(GetConfig.Langs["CommandSuspender"], new Action(Suspender), false);
             API.RegisterCommand(GetConfig.Langs["CommandVest"], new Action(Vest), false);
             API.RegisterCommand(GetConfig.Langs["CommandCoat"], new Action(Coat), false);
+            API.RegisterCommand(GetConfig.Langs["CommandCoatClosed"], new Action(CoatClosed), false);
             API.RegisterCommand(GetConfig.Langs["CommandPoncho"], new Action(Poncho), false);
             API.RegisterCommand(GetConfig.Langs["CommandCloak"], new Action(Cloak), false);
             API.RegisterCommand(GetConfig.Langs["CommandGlove"], new Action(Glove), false);
@@ -157,6 +158,19 @@ namespace vorpcharacter_cl.Utils
             else
             {
                 Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), LoadPlayer.ConvertValue(LoadPlayer.cache_cloths["Coat"].ToString()), true, true, false);
+            }
+            Function.Call((Hash)0xCC8CA3E88256E58F, API.PlayerPedId(), 0, 1, 1, 1, 0);
+        }
+
+        private static void CoatClosed()
+        {
+            if (Function.Call<bool>((Hash)0xFB4891BD7578CDC1, API.PlayerPedId(), 0x0662AC34))
+            {
+                Function.Call((Hash)0xD710A5007C2AC539, API.PlayerPedId(), 0x0662AC34, 0);
+            }
+            else
+            {
+                Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), LoadPlayer.ConvertValue(LoadPlayer.cache_cloths["CoatClosed"].ToString()), true, true, false);
             }
             Function.Call((Hash)0xCC8CA3E88256E58F, API.PlayerPedId(), 0, 1, 1, 1, 0);
         }
@@ -424,6 +438,7 @@ namespace vorpcharacter_cl.Utils
             Function.Call((Hash)0xD710A5007C2AC539, API.PlayerPedId(), 0x877A2CF7, 0);
             Function.Call((Hash)0xD710A5007C2AC539, API.PlayerPedId(), 0x485EE834, 0);
             Function.Call((Hash)0xD710A5007C2AC539, API.PlayerPedId(), 0xE06D30CE, 0);
+            Function.Call((Hash)0xD710A5007C2AC539, API.PlayerPedId(), 0x0662AC34, 0);
             Function.Call((Hash)0xD710A5007C2AC539, API.PlayerPedId(), 0xAF14310B, 0);
             Function.Call((Hash)0xD710A5007C2AC539, API.PlayerPedId(), 0x3C1A74CD, 0);
             Function.Call((Hash)0xD710A5007C2AC539, API.PlayerPedId(), 0xEABE0032, 0);
@@ -460,6 +475,7 @@ namespace vorpcharacter_cl.Utils
             Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), LoadPlayer.ConvertValue(LoadPlayer.cache_cloths["Suspender"].ToString()), true, true, false);
             Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), LoadPlayer.ConvertValue(LoadPlayer.cache_cloths["Vest"].ToString()), true, true, false);
             Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), LoadPlayer.ConvertValue(LoadPlayer.cache_cloths["Coat"].ToString()), true, true, false);
+            Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), LoadPlayer.ConvertValue(LoadPlayer.cache_cloths["CoatClosed"].ToString()), true, true, false);
             Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), LoadPlayer.ConvertValue(LoadPlayer.cache_cloths["Poncho"].ToString()), true, true, false);
             Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), LoadPlayer.ConvertValue(LoadPlayer.cache_cloths["Cloak"].ToString()), true, true, false);
             Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), LoadPlayer.ConvertValue(LoadPlayer.cache_cloths["Glove"].ToString()), true, true, false);

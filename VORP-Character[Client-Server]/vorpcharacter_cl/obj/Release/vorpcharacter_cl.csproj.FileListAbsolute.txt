@@ -1,0 +1,11 @@
+E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_cl\bin\Release\Config.json
+E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_cl\bin\Release\Es.json
+E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_cl\bin\Release\vorpcharacter_cl.net.dll
+E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_cl\bin\Release\vorpcharacter_cl.net.pdb
+E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_cl\bin\Release\CitizenFX.Core.dll
+E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_cl\bin\Release\Newtonsoft.Json.dll
+E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_cl\obj\Release\vorpcharacter_cl.csproj.CoreCompileInputs.cache
+E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_cl\obj\Release\vorpcharacter_cl.csproj.CopyComplete
+E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_cl\obj\Release\vorpcharacter_cl.net.dll
+E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_cl\obj\Release\vorpcharacter_cl.net.pdb
+E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_cl\obj\Release\vorpcharacter_cl.csproj.AssemblyReference.cache

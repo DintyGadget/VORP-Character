@@ -27,7 +27,7 @@ namespace vorpcharacter_cl.Menus
 
             if (CreateCharacter.model_selected == "mp_male")
             {
-                //Cabellos de Hombre
+                //Male pants
                 for (float i = 1; i < SkinsUtils.HATS_MALE.Count + 1; i++)
                 {
                     hatType.Add(GetConfig.Langs["HatsValue"] + i);
@@ -35,7 +35,7 @@ namespace vorpcharacter_cl.Menus
             }
             else
             {
-                //Cabellos de Mujer
+                //Female pants
                 for (float i = 1; i < SkinsUtils.HATS_FEMALE.Count + 1; i++)
                 {
                     hatType.Add(GetConfig.Langs["HatsValue"] + i);
@@ -790,20 +790,20 @@ namespace vorpcharacter_cl.Menus
                         CreateCharacter.SetPlayerComponent(_newIndex, 0x514ADCEA, "Spats", SkinsUtils.SPATS_MALE, SkinsUtils.SPATS_FEMALE);
                         break;
                     case 26:
-                        CreateCharacter.SetPlayerComponent(_newIndex, 0x91CE9B20, "Gauntlets", SkinsUtils.GAUNTLETS_MALE, SkinsUtils.GAUNTLETS_FEMALE);
+                        CreateCharacter.SetPlayerComponent(_newIndex, 0xF1542D11, "GunbeltAccs", SkinsUtils.GUNBELTACCS_MALE, SkinsUtils.GUNBELTACCS_FEMALE);
                         break;
                     case 27:
-                        CreateCharacter.SetPlayerComponent(_newIndex, 0x83887E88, "Loadouts", SkinsUtils.LOADOUTS_MALE, SkinsUtils.LOADOUTS_FEMALE);
+                        CreateCharacter.SetPlayerComponent(_newIndex, 0x91CE9B20, "Gauntlets", SkinsUtils.GAUNTLETS_MALE, SkinsUtils.GAUNTLETS_FEMALE);
                         break;
                     case 28:
-                        CreateCharacter.SetPlayerComponent(_newIndex, 0x79D7DF96, "Accessories", SkinsUtils.ACCESSORIES_MALE, SkinsUtils.ACCESSORIES_FEMALE);
+                        CreateCharacter.SetPlayerComponent(_newIndex, 0x83887E88, "Loadouts", SkinsUtils.LOADOUTS_MALE, SkinsUtils.LOADOUTS_FEMALE);
                         break;
                     case 29:
-                        CreateCharacter.SetPlayerComponent(_newIndex, 0x94504D26, "Satchels", SkinsUtils.SATCHELS_MALE, SkinsUtils.SATCHELS_FEMALE);
+                        CreateCharacter.SetPlayerComponent(_newIndex, 0x79D7DF96, "Accessories", SkinsUtils.ACCESSORIES_MALE, SkinsUtils.ACCESSORIES_FEMALE);
                         break;
                     case 30:
-                        CreateCharacter.SetPlayerComponent(_newIndex, 0xF1542D11, "GunbeltAccs", SkinsUtils.SATCHELS_MALE, SkinsUtils.SATCHELS_FEMALE);
-                    break;
+                        CreateCharacter.SetPlayerComponent(_newIndex, 0x94504D26, "Satchels", SkinsUtils.SATCHELS_MALE, SkinsUtils.SATCHELS_FEMALE);
+                        break;
                 }
             };
 
