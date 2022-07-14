@@ -59,7 +59,7 @@ namespace vorpcharacter_cl
                     skinPlayer[$"{name}_visibility"] = visibility;
                     skinPlayer[$"{name}_tx_id"] = tx_id;
 
-                    if (name.Contains("shadows") || name.Contains("lipsticks") || name.Equals("hair") || name.Equals("beardstabble") || name.Equals("eyebrows"))
+                    if (name.Contains("shadows") || name.Contains("lipsticks") || name.Equals("hair") || name.Equals("beardstabble") || name.Equals("eyebrows") || name.Equals("eyeliners"))
                     {
                         skinPlayer[$"{name}_palette_id"] = palette_id;
                         skinPlayer[$"{name}_palette_color_primary"] = palette_color_primary;
@@ -80,7 +80,7 @@ namespace vorpcharacter_cl
                             SkinsUtils.overlay_all_layers[i]["palette_color_secondary"] = palette_color_secondary;
                             SkinsUtils.overlay_all_layers[i]["palette_color_tertiary"] = palette_color_tertiary;
                         }
-                        if (name.Equals("shadows") || name.Equals("eyeliners") || name.Equals("lipsticks") || name.Equals("hair") || name.Equals("beardstabble"))
+                        if (name.Equals("shadows") || name.Equals("eyeliners") || name.Equals("lipsticks") || name.Equals("beardstabble"))
                         {
                             SkinsUtils.overlay_all_layers[i]["var"] = var;
                             SkinsUtils.overlay_all_layers[i]["tx_id"] = (int)SkinsUtils.overlays_info[name][0]["id"];
@@ -199,6 +199,8 @@ namespace vorpcharacter_cl
 
             { "Hair", 0 },
 
+            { "Teeth", 0 },
+
             { "Body", 0 },
 
             { "Waist", 0 },
@@ -255,7 +257,10 @@ namespace vorpcharacter_cl
 
             { "beardstabble_visibility", 0 },
             { "beardstabble_tx_id", 0 },
-            { "beardstabble_palette_id", 0 }
+            { "beardstabble_palette_id", 0 },
+
+            { "eyeliners_visibility", 0 },
+            { "eyeliners_tx_id", 0 },
         };
 
         public static Dictionary<string, object> clothesPlayer = new Dictionary<string, object>() {
@@ -351,6 +356,7 @@ namespace vorpcharacter_cl
             //Fix Hair
             Function.Call((Hash)0xD710A5007C2AC539, API.PlayerPedId(), 0x864B03AE, 0);
             Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), ConvertValue(skinPlayer["Hair"].ToString()), true, true, true);
+            Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), ConvertValue(skinPlayer["Teeth"].ToString()), true, true, true);
             Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), ConvertValue(skinPlayer["Beard"].ToString()), true, true, true);
 
             Function.Call((Hash)0xD3A7B003ED343FD9, API.PlayerPedId(), ConvertValue(skinPlayer["HeadType"].ToString()), true, true, true);
@@ -781,7 +787,6 @@ namespace vorpcharacter_cl
             }
             else
             {
-                //Function.Call((Hash)0x77FF8D35EEC6BBC4, API.PlayerPedId(), 0, 0);
 
                 while (!Function.Call<bool>((Hash)0xA0BC8FAED8CFEB3C, API.PlayerPedId()))
                 {

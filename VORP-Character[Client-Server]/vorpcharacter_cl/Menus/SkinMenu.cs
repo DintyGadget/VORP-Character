@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Dynamic;
 using System.Text;
 using System.Threading.Tasks;
 using vorpcharacter_cl.Utils;
@@ -40,6 +41,8 @@ namespace vorpcharacter_cl.Menus
         private static MenuListItem btnSelectorHairOverColor;
         private static MenuListItem btnSelectorBeardStabble;
         private static MenuListItem btnSelectorBeardStabbleColor;
+        private static MenuListItem btnSelectorEyeliners;
+        private static MenuListItem btnSelectorEyelinersColor;
 
         private static bool setupDone = false;
         private static void SetupMenu()
@@ -126,7 +129,7 @@ namespace vorpcharacter_cl.Menus
                 MenuListItem btnSelectorHairs = new MenuListItem(GetConfig.Langs["HairType"], hairValues, 0, GetConfig.Langs["HairTypeDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorHairs); // Lo añadimos al menu
 
-
+                //Eyes
                 List<string> eyesValues = new List<string>();
 
                 for (float i = 1; i < SkinsUtils.EYES_MALE.Count + 1; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
@@ -379,6 +382,39 @@ namespace vorpcharacter_cl.Menus
 
                 btnSelectorBeardStabbleColor = new MenuListItem(GetConfig.Langs["BeardStabbleColorsList"], beardstabbleColorValues, 0, GetConfig.Langs["BeardStabbleColorsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorBeardStabbleColor); // Lo añadimos al menu
+
+                //eyeliner
+                List<string> eyelinerValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.overlays_info["eyeliners"].Count() + 2; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    eyelinerValues.Add(GetConfig.Langs["Eyeliners"] + i);
+                }
+
+                btnSelectorEyeliners = new MenuListItem(GetConfig.Langs["EyelinersList"], eyelinerValues, 0, GetConfig.Langs["EyelinersDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorEyeliners); // Lo añadimos al menu
+
+                //eyeliner color
+                List<string> eyelinerColorValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.COLOR_PALETTES.Count() + 1; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    eyelinerColorValues.Add(GetConfig.Langs["EyelinersColors"] + i);
+                }
+
+                btnSelectorEyelinersColor = new MenuListItem(GetConfig.Langs["EyelinersColorsList"], eyelinerColorValues, 0, GetConfig.Langs["EyelinersColorsDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorEyelinersColor); // Lo añadimos al menu
+
+                //Teeth
+                List<string> teethValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.TEETH_MALE.Count + 2; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    teethValues.Add(GetConfig.Langs["TeethValue"] + i);
+                }
+
+                MenuListItem btnSelectorTeeth = new MenuListItem(GetConfig.Langs["TeethType"], teethValues, 0, GetConfig.Langs["TeethTypeDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorTeeth); // Lo añadimos al menu
             }
             else //Female
             {
@@ -698,6 +734,39 @@ namespace vorpcharacter_cl.Menus
 
                 btnSelectorBeardStabbleColor = new MenuListItem(GetConfig.Langs["BeardStabbleColorsList"], beardstabbleColorValues, 0, GetConfig.Langs["BeardStabbleColorsDesc"]); // Añadimos la lista al boton
                 skinMenu.AddMenuItem(btnSelectorBeardStabbleColor); // Lo añadimos al menu
+
+                //eyeliner
+                List<string> eyelinerValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.overlays_info["paintedmasks"].Count() + 2; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    eyelinerValues.Add(GetConfig.Langs["Eyeliners"] + i);
+                }
+
+                btnSelectorEyeliners = new MenuListItem(GetConfig.Langs["EyelinersList"], eyelinerValues, 0, GetConfig.Langs["EyelinersDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorEyeliners); // Lo añadimos al menu
+
+                //eyeliner color
+                List<string> eyelinerColorValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.COLOR_PALETTES.Count() + 1; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    eyelinerColorValues.Add(GetConfig.Langs["EyelinersColors"] + i);
+                }
+
+                btnSelectorEyelinersColor = new MenuListItem(GetConfig.Langs["EyelinersColorsList"], eyelinerColorValues, 0, GetConfig.Langs["EyelinersColorsDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorEyelinersColor); // Lo añadimos al menu
+
+                //Teeth
+                List<string> teethValues = new List<string>();
+
+                for (float i = 1; i < SkinsUtils.TEETH_FEMALE.Count + 2; i++) //Recuerda un +1 a la lista ya que empezamos desde el (INT I = 1)
+                {
+                    teethValues.Add(GetConfig.Langs["TeethValue"] + i);
+                }
+
+                MenuListItem btnSelectorTeeth = new MenuListItem(GetConfig.Langs["TeethType"], teethValues, 0, GetConfig.Langs["TeethTypeDesc"]); // Añadimos la lista al boton
+                skinMenu.AddMenuItem(btnSelectorTeeth); // Lo añadimos al menu
             }
 
 
@@ -1006,6 +1075,44 @@ namespace vorpcharacter_cl.Menus
                             CreateCharacter.toggleOverlayChange("beardstabble", 1, btnSelectorBeardStabble.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorBeardStabbleColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
                         }
                         break;
+                    case 30:
+                        if (_newIndex == 0)
+                        {
+                            CreateCharacter.toggleOverlayChange("eyeliners", 0, _newIndex, 0, 0, 0, 1.0f, 0, btnSelectorEyelinersColor.ListIndex, 0, 0, 0, 0, 0.0f);
+                        }
+                        else
+                        {
+                            CreateCharacter.toggleOverlayChange("eyeliners", 1, _newIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorEyelinersColor.ListIndex, 0, 0, 0, 0, 1.0f);
+                        }
+                        break;
+                    case 31:
+                        if (btnSelectorEyeliners.ListIndex == 0)
+                        {
+                            CreateCharacter.toggleOverlayChange("eyeliners", 0, btnSelectorEyeliners.ListIndex, 0, 0, 0, 1.0f, 0, btnSelectorEyelinersColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
+                        }
+                        else
+                        {
+                            CreateCharacter.toggleOverlayChange("eyeliners", 1, btnSelectorEyeliners.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorEyelinersColor.ListIndex, _newIndex, 0, 0, 0, 1.0f);
+                        }
+                        break;
+                    case 32:
+                        if (CreateCharacter.model_selected == "mp_male")
+                        {
+                            API.RequestAnimDict("FACE_HUMAN@GEN_MALE@BASE");
+                            CreateCharacter.SetPlayerModelListComps("Teeth", SkinsUtils.TEETH_MALE.ElementAt(_newIndex), 0x864B03AE);
+                            Function.Call((Hash)0xEA47FE3719165B94, API.PlayerPedId(), "FACE_HUMAN@GEN_MALE@BASE", "Face_Dentistry_In", 0.8, -1.0, 1500, 1, 0, true, 0, false, 0, false);
+                            Function.Call((Hash)0xEA47FE3719165B94, API.PlayerPedId(), "FACE_HUMAN@GEN_MALE@BASE", "Face_Dentistry_Loop", 0.8, -1.0, -1, 1, 0, true, 0, false, 0, false);
+                            Function.Call((Hash)0xEA47FE3719165B94, API.PlayerPedId(), "FACE_HUMAN@GEN_MALE@BASE", "Face_Dentistry_Out", 0.8, -1.0, 1500, 1, 0, true, 0, false, 0, false);
+                        }
+                        else
+                        {
+                            API.RequestAnimDict("FACE_HUMAN@GEN_MALE@BASE");
+                            CreateCharacter.SetPlayerModelListComps("Teeth", SkinsUtils.TEETH_FEMALE.ElementAt(_newIndex), 0x864B03AE);
+                            Function.Call((Hash)0xEA47FE3719165B94, API.PlayerPedId(), "FACE_HUMAN@GEN_MALE@BASE", "Face_Dentistry_In", 0.8, -1.0, 1500, 1, 0, true, 0, false, 0, false);
+                            Function.Call((Hash)0xEA47FE3719165B94, API.PlayerPedId(), "FACE_HUMAN@GEN_MALE@BASE", "Face_Dentistry_Loop", 0.8, -1.0, -1, 1, 0, true, 0, false, 0, false);
+                            Function.Call((Hash)0xEA47FE3719165B94, API.PlayerPedId(), "FACE_HUMAN@GEN_MALE@BASE", "Face_Dentistry_Out", 0.8, -1.0, 1500, 1, 0, true, 0, false, 0, false);
+                        }
+                        break;
                 }
             };
 
@@ -1113,6 +1220,30 @@ namespace vorpcharacter_cl.Menus
             else
             {
                 CreateCharacter.toggleOverlayChange("shadows", 1, btnSelectorShadows.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorShadowsColor.ListIndex, btnSelectorLipsticksPColor.ListIndex, 0, 0, 0, 1.0f);
+            }
+            if (btnSelectorHairOver.ListIndex == 0)
+            {
+                CreateCharacter.toggleOverlayChange("hair", 0, btnSelectorHairOver.ListIndex, 0, 0, 0, 1.0f, 0, btnSelectorHairOverColor.ListIndex, 0, 0, 0, 0, 1.0f);
+            }
+            else
+            {
+                CreateCharacter.toggleOverlayChange("hair", 1, btnSelectorHairOver.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorHairOverColor.ListIndex, 0, 0, 0, 0, 1.0f);
+            }
+            if (btnSelectorBeardStabble.ListIndex == 0)
+            {
+                CreateCharacter.toggleOverlayChange("beardstabble", 0, btnSelectorBeardStabble.ListIndex, 0, 0, 0, 1.0f, 0, btnSelectorBeardStabbleColor.ListIndex, 0, 0, 0, 0, 1.0f);
+            }
+            else
+            {
+                CreateCharacter.toggleOverlayChange("beardstabble", 1, btnSelectorBeardStabble.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorBeardStabbleColor.ListIndex, 0, 0, 0, 0, 1.0f);
+            }
+            if (btnSelectorEyeliners.ListIndex == 0)
+            {
+                CreateCharacter.toggleOverlayChange("eyeliners", 0, btnSelectorEyeliners.ListIndex, 0, 0, 0, 1.0f, 0, btnSelectorEyelinersColor.ListIndex, 0, 0, 0, 0, 1.0f);
+            }
+            else
+            {
+                CreateCharacter.toggleOverlayChange("eyeliners", 1, btnSelectorEyeliners.ListIndex - 1, 0, 0, 0, 1.0f, 0, btnSelectorEyelinersColor.ListIndex, 0, 0, 0, 0, 1.0f);
             }
         }
 

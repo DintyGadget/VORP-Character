@@ -334,6 +334,7 @@ namespace vorpcharacter_cl
             CreateCharacter.toggleOverlayChange("shadows", int.Parse(skin["shadows_visibility"]), int.Parse(skin["shadows_tx_id"]), 0, 0, 0, 1.0f, 0, int.Parse(skin["shadows_palette_id"]), int.Parse(skin["shadows_palette_color_primary"]), 0, 0, 0, 1.0f);
             CreateCharacter.toggleOverlayChange("hair", int.Parse(skin["hair_visibility"]), int.Parse(skin["hair_tx_id"]), 0, 0, 0, 1.0f, 0, int.Parse(skin["hair_palette_id"]), 0, 0, 0, 0, 1.0f);
             CreateCharacter.toggleOverlayChange("beardstabble", int.Parse(skin["beardstabble_visibility"]), int.Parse(skin["beardstabble_tx_id"]), 0, 0, 0, 1.0f, 0, int.Parse(skin["beardstabble_palette_id"]), 0, 0, 0, 0, 1.0f);
+            CreateCharacter.toggleOverlayChange("eyeliners", int.Parse(skin["eyeliners_visibility"]), int.Parse(skin["eyeliners_tx_id"]), 0, 0, 0, 1.0f, 0, int.Parse(skin["eyeliners_palette_id"]), 0, 0, 0, 0, 1.0f);
 
             await Delay(500);
             
@@ -374,9 +375,10 @@ namespace vorpcharacter_cl
 
             Function.Call((Hash)0xCC8CA3E88256E58F, pPedID, 0, 1, 1, 1, false);
 
-            await Delay(1000);
+            await Delay(1500);
             Function.Call((Hash)0x59BD177A1A48600A, pPedID, 0xF8016BCA);
             Function.Call((Hash)0xD3A7B003ED343FD9, pPedID, ConvertValue(skin["Beard"]), true, true, true);
+            Function.Call((Hash)0xD3A7B003ED343FD9, pPedID, ConvertValue(skin["Teeth"]), true, true, true);
             Function.Call((Hash)0xD3A7B003ED343FD9, pPedID, ConvertValue(skin["Hair"]), true, true, true); // If your hair is not loaded, it will load along with your beard.
 
             Function.Call((Hash)0xCC8CA3E88256E58F, pPedID, 0, 1, 1, 1, false);

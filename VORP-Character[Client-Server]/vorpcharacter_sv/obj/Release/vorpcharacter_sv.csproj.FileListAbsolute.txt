@@ -6,4 +6,3 @@ E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_chara
 E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_sv\obj\Release\vorpcharacter_sv.csproj.CopyComplete
 E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_sv\obj\Release\vorpcharacter_sv.net.dll
 E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_sv\obj\Release\vorpcharacter_sv.net.pdb
-E:\Launcher\RockStarHueta\Game\Servbooba\server-data\resources\[VORP]\vorp_character\VORP-Character[Client-Server]\vorpcharacter_sv\obj\Release\vorpcharacter_sv.csproj.AssemblyReference.cache

@@ -94,8 +94,8 @@ namespace vorpcharacter_cl
 
             uint hashmodel = (uint)API.GetHashKey("mp_male");
             await Miscellanea.LoadModel(hashmodel);
-            //int character_1 = API.CreatePed(hashmodel, 1701.316f, 1512.134f, 146.87f, 116.70f, false, false, true, true);
             int character_1 = API.CreatePed(hashmodel, CharacterSelectionStartCoords.X, CharacterSelectionStartCoords.Y, CharacterSelectionStartCoords.Z, 116.70f, false, false, true, true);
+
             Function.Call((Hash)0x283978A15512B2FE, character_1, true);
             await Delay(1000);
             API.TaskGoToCoordAnyMeans(character_1, characterSelectionFinalCoords.X, characterSelectionFinalCoords.Y, characterSelectionFinalCoords.Z, 0.5f, 0, false, 524419, -1f);
@@ -180,17 +180,16 @@ namespace vorpcharacter_cl
             Function.Call((Hash)0x839BFD7D7E49FE09, tagId);
             API.DeletePed(ref ppid);
             await LoadNpcComps(json_skin, json_components);
-            await Delay(100);
+            await Delay(10);
             await LoadNpcComps(json_skin, json_components);
             tagId = Function.Call<int>((Hash)0x53CB4B502E1C57EA, ppid, $"{GetConfig.Langs["MoneyTag"]}: ~COLOR_WHITE~$" + "~COLOR_REPLAY_GREEN~" + myChars[selectedChar].money, false, false, "", 0);
             Function.Call((Hash)0xA0D7CE5F83259663, tagId, myChars[selectedChar].firstname + " " + myChars[selectedChar].lastname);
             Function.Call((Hash)0x5F57522BC1EB9D9D, tagId, 0);
-            await Delay(300);
+            await Delay(200);
 
             await MoveToCoords(characterSelectionMiddleCoords);
             await MoveToCoords(characterSelectionWorshipCoords);
 
-            //Function.Call((Hash)0x5AB552C6, ppid, "ai_gestures@john@standing@speaker", "john_greet_bow_l_001", 1.0, 8.0, 2000, 0, 0.0, false, false, false);
             var emote_category = 3;
             Function.Call((Hash)0xB31A277C1AC7B7FF, ppid, emote_category, 2, API.GetHashKey(emotes[new Random(DateTime.Now.Millisecond).Next(0, emotes.Count - 1)]), 0, 0, 0, 0, 0);
             await Delay(2000);
@@ -210,18 +209,16 @@ namespace vorpcharacter_cl
             RegisterPrompts();
 
             isInCharacterSelector = true;
-            Controller();
-            DrawInformation();
+            await Controller();
+            await DrawInformation();
             Function.Call(Hash.SET_CLOCK_TIME, 12, 00, 0);
             API.SetClockTime(12, 00, 00);
 
+            await StartSwapCharacter();
+
             //Arthur Morgan
-            //API.SetEntityCoords(API.PlayerPedId(), 1687.03f, 1507.06f, 145.60f, false, false, false, false);
             API.SetEntityCoords(API.PlayerPedId(), 2546.91f, -1304.16f, 49.1f, false, false, false, false);
 
-            myChars = myCharacters;
-
-            //mainCamera = API.CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", 1693.301f, 1507.959f, 148.84f, -13.82f, 0f, -84.67f, 50.00f, false, 0);
             Vector3 camCoors = new Vector3(GetConfig.Config["MainCamCoords"][0].ToObject<float>(), GetConfig.Config["MainCamCoords"][1].ToObject<float>(), GetConfig.Config["MainCamCoords"][2].ToObject<float>());
             Vector4 camRotation = new Vector4(GetConfig.Config["MainCamRotations"][0].ToObject<float>(), GetConfig.Config["MainCamRotations"][1].ToObject<float>(), GetConfig.Config["MainCamRotations"][2].ToObject<float>(), GetConfig.Config["MainCamRotations"][3].ToObject<float>());
             mainCamera = API.CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", camCoors.X, camCoors.Y, camCoors.Z, camRotation.X, camRotation.Y, camRotation.Z, camRotation.W, false, 0);
@@ -230,9 +227,9 @@ namespace vorpcharacter_cl
 
             API.RenderScriptCams(true, true, 1000, true, true, 0);
 
-            StartSwapCharacter();
-
             await Delay(15000);
+
+            await StartSwapCharacter();
 
             API.DoScreenFadeIn(1000);
         }
@@ -254,6 +251,7 @@ namespace vorpcharacter_cl
         {
             try
             {
+
                 int charIdentifier = int.Parse(myChars[selectedChar].charIdentifier.ToString());
                 TriggerServerEvent("vorp_CharSelectedCharacter", charIdentifier);
 
@@ -267,6 +265,10 @@ namespace vorpcharacter_cl
                 string json_components = myChars[selectedChar].components;
                 string json_coords = myChars[selectedChar].coords;
                 JObject jPos = JObject.Parse(json_coords);
+
+                await LoadNpcComps(json_skin, json_components);
+                await Delay(10);
+                await LoadNpcComps(json_skin, json_components);
 
                 TriggerEvent("vorpcharacter:loadPlayerSkin", json_skin, json_components);
                 API.DoScreenFadeOut(100); // It is necessary so that the world has time to load and the player does not have to see empty textures
@@ -422,6 +424,8 @@ namespace vorpcharacter_cl
             ppid = API.CreatePed(model_hash, characterSelectionStartCoords.X, characterSelectionStartCoords.Y, characterSelectionStartCoords.Z, 116.70f, false, false, true, true); //Inside house
             API.DisablePedPainAudio(ppid, true);
             await Delay(300);
+
+            Function.Call((Hash)0xCC8CA3E88256E58F, ppid, 0, 1, 1, 1, false);
 
             //PreLoad TextureFace
             if (skin["sex"].ToString().Equals("mp_male"))
@@ -580,23 +584,6 @@ namespace vorpcharacter_cl
 
             Function.Call((Hash)0xCC8CA3E88256E58F, ppid, 0, 1, 1, 1, false);
 
-            //Load Face Texture
-            //await Delay(100);
-            //CreateCharacter.toggleOverlayChange("eyebrows", int.Parse(skin["eyebrows_visibility"]), int.Parse(skin["eyebrows_tx_id"]), 0, 0, 0, 1.0f, 0, int.Parse(skin["eyebrows_palette_id"]), 0, 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("scars", int.Parse(skin["scars_visibility"]), int.Parse(skin["scars_tx_id"]), 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("spots", int.Parse(skin["spots_visibility"]), int.Parse(skin["spots_tx_id"]), 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("disc", int.Parse(skin["disc_visibility"]), int.Parse(skin["disc_tx_id"]), 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("complex", int.Parse(skin["complex_visibility"]), int.Parse(skin["complex_tx_id"]), 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("acne", int.Parse(skin["acne_visibility"]), int.Parse(skin["acne_tx_id"]), 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("ageing", int.Parse(skin["ageing_visibility"]), int.Parse(skin["ageing_tx_id"]), 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("freckles", int.Parse(skin["freckles_visibility"]), int.Parse(skin["freckles_tx_id"]), 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("moles", int.Parse(skin["moles_visibility"]), int.Parse(skin["moles_tx_id"]), 0, 0, 1, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("grime", int.Parse(skin["grime_visibility"]), int.Parse(skin["grime_tx_id"]), 0, 0, 0, 1.0f, 0, 0, 0, 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("lipsticks", int.Parse(skin["lipsticks_visibility"]), int.Parse(skin["lipsticks_tx_id"]), 0, 0, 0, 1.0f, 0, int.Parse(skin["lipsticks_palette_id"]), int.Parse(skin["lipsticks_palette_color_primary"]), 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("shadows", int.Parse(skin["shadows_visibility"]), int.Parse(skin["shadows_tx_id"]), 0, 0, 0, 1.0f, 0, int.Parse(skin["shadows_palette_id"]), int.Parse(skin["shadows_palette_color_primary"]), 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("hair", int.Parse(skin["hair_visibility"]), int.Parse(skin["hair_tx_id"]), 0, 0, 0, 1.0f, 0, int.Parse(skin["hair_palette_id"]), 0, 0, 0, 0, 1.0f);
-            //CreateCharacter.toggleOverlayChange("beardstabble", int.Parse(skin["beardstabble_visibility"]), int.Parse(skin["beardstabble_tx_id"]), 0, 0, 0, 1.0f, 0, int.Parse(skin["beardstabble_palette_id"]), 0, 0, 0, 0, 1.0f);
-
             await Delay(500);
             SetPlayerComponent(skin["sex"], 0x9925C067, "Hat", cloths);
             SetPlayerComponent(skin["sex"], 0x5E47CA6, "EyeWear", cloths);
@@ -638,6 +625,7 @@ namespace vorpcharacter_cl
             await Delay(1000);
             Function.Call((Hash)0x59BD177A1A48600A, ppid, 0xF8016BCA);
             Function.Call((Hash)0xD3A7B003ED343FD9, ppid, LoadPlayer.ConvertValue(skin["Beard"]), true, true, true);
+            Function.Call((Hash)0xD3A7B003ED343FD9, ppid, LoadPlayer.ConvertValue(skin["Teeth"]), true, true, true);
             Function.Call((Hash)0xD3A7B003ED343FD9, ppid, LoadPlayer.ConvertValue(skin["Hair"]), true, true, true);
 
             Function.Call((Hash)0xCC8CA3E88256E58F, ppid, 0, 1, 1, 1, false);

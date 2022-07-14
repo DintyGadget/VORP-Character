@@ -4,7 +4,7 @@
   "PressGuide": "Rotate <-[A] [D]-> | Cameras [W] or [S]",
 
   //New Update
-  "CreateNewChar": "Create New",
+  "CreateNewChar": "New Character",
   "DeleteChar": "Delete",
   "MoneyTag": "Money",
   "CharactersFull": "You can't create more characters",
@@ -48,6 +48,10 @@
   "EyeBrows": "Eyebrows #",
   "EyeBrowsList": "Type of Eyebrows",
   "EyeBrowsDesc": "Eyebrows form",
+
+  "eyeBrowsColors": "Color #",
+  "eyeBrowsColorsList": "Base Eyebrows Color",
+  "eyeBrowsColorsDesc": "Eyebrows color",
 
   "Scars": "Scar #",
   "ScarsList": "Types of Scars",
@@ -108,6 +112,22 @@
   "ShadowsPColors": "Color #",
   "ShadowsPColorsList": "Mixed Eyeshadow Color",
   "ShadowsPColorsDesc": "Add Makeup",
+
+  "HairOver": "Hair Overlay #",
+  "HairOverList": "Type of Hair Overlay",
+  "HairOverDesc": "Add Hair Overlay",
+  
+  "HairOverColors": "Color #",
+  "HairOverColorsList": "Base Hair Overlay Color",
+  "HairOverColorsDesc": "",
+  
+  "BeardStabble": "Stubble #",
+  "BeardStabbleList": "Beard Stubble",
+  "BeardStabbleDesc": "Add Beard Stubble",
+  
+  "BeardStabbleColors": "Color #",
+  "BeardStabbleColorsList": "Base Beard Stubble Color",
+  "BeardStabbleColorsDesc": "",
 
   "Eyes": "Eyes #",
   "EyesList": "Types of Eyes",
