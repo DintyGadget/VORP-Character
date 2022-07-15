@@ -209,15 +209,15 @@ namespace vorpcharacter_cl
             RegisterPrompts();
 
             isInCharacterSelector = true;
-            await Controller();
-            await DrawInformation();
+            Controller();
+            DrawInformation();
             Function.Call(Hash.SET_CLOCK_TIME, 12, 00, 0);
             API.SetClockTime(12, 00, 00);
 
-            await StartSwapCharacter();
-
             //Arthur Morgan
             API.SetEntityCoords(API.PlayerPedId(), 2546.91f, -1304.16f, 49.1f, false, false, false, false);
+
+            myChars = myCharacters;
 
             Vector3 camCoors = new Vector3(GetConfig.Config["MainCamCoords"][0].ToObject<float>(), GetConfig.Config["MainCamCoords"][1].ToObject<float>(), GetConfig.Config["MainCamCoords"][2].ToObject<float>());
             Vector4 camRotation = new Vector4(GetConfig.Config["MainCamRotations"][0].ToObject<float>(), GetConfig.Config["MainCamRotations"][1].ToObject<float>(), GetConfig.Config["MainCamRotations"][2].ToObject<float>(), GetConfig.Config["MainCamRotations"][3].ToObject<float>());
@@ -227,9 +227,9 @@ namespace vorpcharacter_cl
 
             API.RenderScriptCams(true, true, 1000, true, true, 0);
 
-            await Delay(15000);
+            StartSwapCharacter();
 
-            await StartSwapCharacter();
+            await Delay(15000);
 
             API.DoScreenFadeIn(1000);
         }
@@ -265,10 +265,6 @@ namespace vorpcharacter_cl
                 string json_components = myChars[selectedChar].components;
                 string json_coords = myChars[selectedChar].coords;
                 JObject jPos = JObject.Parse(json_coords);
-
-                await LoadNpcComps(json_skin, json_components);
-                await Delay(10);
-                await LoadNpcComps(json_skin, json_components);
 
                 TriggerEvent("vorpcharacter:loadPlayerSkin", json_skin, json_components);
                 API.DoScreenFadeOut(100); // It is necessary so that the world has time to load and the player does not have to see empty textures

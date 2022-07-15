@@ -122,12 +122,20 @@
   "HairOverColorsDesc": "",
   
   "BeardStabble": "Stubble #",
-  "BeardStabbleList": "Beard Stubble",
+  "BeardStabbleList": "Type of Beard Stubble",
   "BeardStabbleDesc": "Add Beard Stubble",
   
   "BeardStabbleColors": "Color #",
   "BeardStabbleColorsList": "Base Beard Stubble Color",
-  "BeardStabbleColorsDesc": "",
+  "BeardStabbleColorsDesc": "Add Beard Stubble",
+  
+  "Eyeliners": "Eyeliner #",
+  "EyelinersList": "Type of Eyeliners",
+  "EyelinersDesc": "Add Eyeliners",
+  
+  "EyelinersColors": "Color #",
+  "EyelinersColorsList": "Base Eyeliner Color",
+  "EyelinersColorsDesc": "Add Eyeliners",
 
   "Eyes": "Eyes #",
   "EyesList": "Types of Eyes",
@@ -164,6 +172,7 @@
   "TypeValues": "Type #",
   "BeardValue": "Beard #",
   "HairValue": "Hair #",
+  "TeethValue": "Teeth #",
   "BodySizeValue": "Body #",
   "WaistValue": "Waist #",
   "NoExistValue": "Does not exist",
@@ -213,6 +222,7 @@
   "ChinDepth": "Chin depth",
   "BeardType": "Type of beard",
   "HairType": "Type of hair",
+  "TeethType": "Type of teeth",
   "BodyType": "Type of body",
   "WaistType": "Type of waist",
   "Confirm": "Confirm",
@@ -263,6 +273,7 @@
   "ChinDepthDesc": "Choose the chin depth",
   "BeardTypeDesc": "Choose the beard",
   "HairTypeDesc": "Choose the hair",
+  "TeethTypeDesc": "Choose the teeth",
   "BodyTypeDesc": "Choose the body type",
   "WaistTypeDesc": "Choose the waist",
   "ConfirmDesc": "Time to dress up, you will be able to return to this section if you want to change something",
